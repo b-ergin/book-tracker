@@ -45,6 +45,11 @@
     </a>
 </div>
 
+<a href="/books">All</a>
+<a href="/books?status=read">Read</a>
+<a href="/books?status=unread">Unread</a>
+<a href="/books?status=reading">Reading</a>
+
 <!-- Grid -->
 <div class="grid grid-cols-2 gap-6">
 

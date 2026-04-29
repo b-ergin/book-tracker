@@ -12,8 +12,18 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books=Book::all();
-        return view('books.index',['books'=>$books]);
+        $filter=request('status');
+        $query=Book::query();
+
+        if ($filter && in_array($filter, ['read', 'unread', 'reading'])){
+            $query->where('status', $filter);
+        }
+
+        $books=$query->get();
+        return view('books.index', [
+            'books' => $books,
+            'filter' => $filter,
+        ]);
     }
 
     /**
