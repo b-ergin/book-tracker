@@ -27,7 +27,7 @@ class BookController extends Controller
             });
         }
 
-        $books=$query->get();
+        $books=$query->paginate(6);
         return view('books.index', [
             'books' => $books,
             'filter' => $filter,

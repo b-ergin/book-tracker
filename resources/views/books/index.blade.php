@@ -60,25 +60,25 @@
 <!-- Filters -->
 <div class="flex gap-3 mb-6">
 
-<a href="/books"
+<a href="{{ request()->fullUrlWithQuery(['status'=>'null']) }}"
    class="px-3 py-1 rounded
    {{ !$filter ? 'bg-[#4A3426] text-white' : 'bg-gray-200' }}">
     All
 </a>
 
-<a href="/books?status=read"
+<a href="{{ request()->fullUrlWithQuery(['status'=>'read']) }}"
    class="px-3 py-1 rounded
    {{ $filter == 'read' ? 'bg-green-600 text-white' : 'bg-gray-200' }}">
     Read
 </a>
 
-<a href="/books?status=unread"
+<a href="{{ request()->fullUrlWithQuery(['status'=>'unread']) }}"
    class="px-3 py-1 rounded
    {{ $filter == 'unread' ? 'bg-gray-500 text-white' : 'bg-gray-200' }}">
     Unread
 </a>
 
-<a href="/books?status=reading"
+<a href="{{ request()->fullUrlWithQuery(['status'=>'reading']) }}"
    class="px-3 py-1 rounded
    {{ $filter == 'reading' ? 'bg-orange-400 text-white' : 'bg-gray-200' }}">
     Reading
@@ -139,6 +139,12 @@
 </div>
 @endforeach
 
+</div>
+
+<!-- pagination --> 
+
+<div class="mt-6">
+    {{ $books->links() }}
 </div>
 
 @endsection
