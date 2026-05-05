@@ -45,10 +45,46 @@
     </a>
 </div>
 
-<a href="/books">All</a>
-<a href="/books?status=read">Read</a>
-<a href="/books?status=unread">Unread</a>
-<a href="/books?status=reading">Reading</a>
+<!-- Search Bar --> 
+<form method="GET" action="/books" class="mb-4">
+    <input type="text" name="search"
+        placeholder="Search"
+        value="{{ request('search') }}"
+        class="border p-2 rounded w-64">
+
+    <button class="px-3 py-2 bg-[#4A3426] text-white rounded">
+        Search
+    </button>
+</form>
+
+<!-- Filters -->
+<div class="flex gap-3 mb-6">
+
+<a href="/books"
+   class="px-3 py-1 rounded
+   {{ !$filter ? 'bg-[#4A3426] text-white' : 'bg-gray-200' }}">
+    All
+</a>
+
+<a href="/books?status=read"
+   class="px-3 py-1 rounded
+   {{ $filter == 'read' ? 'bg-green-600 text-white' : 'bg-gray-200' }}">
+    Read
+</a>
+
+<a href="/books?status=unread"
+   class="px-3 py-1 rounded
+   {{ $filter == 'unread' ? 'bg-gray-500 text-white' : 'bg-gray-200' }}">
+    Unread
+</a>
+
+<a href="/books?status=reading"
+   class="px-3 py-1 rounded
+   {{ $filter == 'reading' ? 'bg-orange-400 text-white' : 'bg-gray-200' }}">
+    Reading
+</a>
+
+</div>
 
 <!-- Grid -->
 <div class="grid grid-cols-2 gap-6">

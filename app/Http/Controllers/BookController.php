@@ -19,11 +19,21 @@ class BookController extends Controller
             $query->where('status', $filter);
         }
 
+        $search = request('search');
+        if ($search) {
+            $query->where(function($q) use ($search){
+                $q->where('title', 'like', "%$search%")
+                  ->orWhere('author', 'like', "%$search%");
+            });
+        }
+
         $books=$query->get();
         return view('books.index', [
             'books' => $books,
             'filter' => $filter,
         ]);
+
+       
     }
 
     /**
